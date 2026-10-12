@@ -9,8 +9,10 @@
 #           any link, must fit in 300 characters)
 #    link:  a web address to add at the end of the post
 #    image: a picture file in the "images" folder, e.g. images/phobos.jpg
-#    alt:   a description of the picture for people using screen readers
-#           (please always include this when you add an image)
+#    video: OR a video file (.mp4) in the "images" folder, e.g. images/landing.mp4
+#           (a post can have a picture or a video, not both)
+#    alt:   a description of the picture or video for people using screen
+#           readers (please always include this)
 #
 #  Indentation matters: each fact starts with "- text:" and the other
 #  lines line up underneath "text". If you put a colon (:) or a # in
@@ -19,7 +21,6 @@
 #  After editing, the "Check facts" job on GitHub tells you if anything
 #  is too long or an image is missing.
 # =====================================================================
-
 
 # Opening lines the bot picks from when it replies to someone.
 # One list per trigger. The bot only uses an opener if there's room.
@@ -75,11 +76,21 @@ facts:
 
   - text: "Wait… a sample of Mars?! 👀 NASA contributed MMX’s pneumatic sampler, P-SMP, to collect material from the surface of Phobos. This may include Martian grains ejected into space by ancient impacts and later captured by Phobos. Could these tiny fragments reveal new secrets about Mars’s past? 🔴"
 
+  - text: "A camera with a mythical namesake! 👺 MMX’s TENGOO camera stands for 'TElescopic Nadir imager for GeOmOrphology'—but its name also evokes the tengu, a supernatural being in Japanese folklore, often depicted with a red face and long nose. TENGOO will capture detailed images of the Phobos terrain!"
+
+  - text: "🐍 Another mythical beast is heading to Phobos! MMX’s OROCHI camera takes its name from 'Optical RadiOmeter composed of CHromatic Imagers'—and from the legendary Japanese eight-headed serpent. The connection? OROCHI has eight wavelength channels to help identify different minerals on Phobos."
 
 
-  # --- Example with a picture (remove the # at the start of each line to use it) ---
-  #
-  # - text: "This is what Phobos looks like up close."
-  #   image: images/phobos.jpg
-  #   alt: "A grey, lumpy moon covered in craters, with one very large crater on the right"
-  #   link: https://www.mmx.jaxa.jp/en/
+
+    # --- Example with a picture (remove the # at the start of each line to use it) ---
+    #
+    # - text: "This is what Phobos looks like up close."
+    #   image: images/phobos.jpg
+    #   alt: "A grey, lumpy moon covered in craters, with one very large crater on the right"
+    #   link: https://www.mmx.jaxa.jp/en/
+    #
+    # --- Example with a video ---
+    #
+    # - text: "Watch how MMX will reach Phobos."
+    #   video: images/mmx-animation.mp4
+    #   alt: "Animation of the MMX spacecraft approaching a lumpy grey moon"
