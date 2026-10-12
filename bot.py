@@ -21,6 +21,7 @@ import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+import regex
 import yaml
 from atproto import Client, client_utils, models
 from PIL import Image
@@ -63,20 +64,38 @@ def squash(text):
     return re.sub(r"[^a-z0-9]", "", text.lower())
 
 
+LINK_LABEL_LENGTH = 30  # long links are shown shortened, like the Bluesky app does
+
+
+def post_length(text):
+    """Length as Bluesky counts it: each emoji or accented letter is 1, however it's stored."""
+    return len(regex.findall(r"\X", text))
+
+
+def link_label(url):
+    """The text shown for a link, e.g. 'science.org/content/article/au…'.
+    The link still goes to the full address when clicked."""
+    label = re.sub(r"^https?://(www\.)?", "", url).rstrip("/")
+    if len(label) > LINK_LABEL_LENGTH:
+        label = label[: LINK_LABEL_LENGTH - 1] + "…"
+    return label
+
+
 def build_text(fact, opener=None):
     """Return (TextBuilder, plain_text) for a fact, adding the opener if it fits."""
     body = str(fact["text"]).strip()
     link = fact.get("link")
-    link_part = f"\n\n{link}" if link else ""
+    label = link_label(link) if link else ""
+    link_part = f"\n\n{label}" if link else ""
 
-    if opener and len(f"{opener}\n\n{body}{link_part}") <= MAX_POST_LENGTH:
+    if opener and post_length(f"{opener}\n\n{body}{link_part}") <= MAX_POST_LENGTH:
         body = f"{opener}\n\n{body}"
 
     tb = client_utils.TextBuilder()
     tb.text(body)
     if link:
         tb.text("\n\n")
-        tb.link(link, link)
+        tb.link(label, link)
     return tb, body + link_part
 
 
@@ -265,14 +284,16 @@ def do_replies():
 def do_check():
     facts, greetings = load_facts()
     problems = 0
-    longest_opener = max((len(g) for gs in greetings.values() for g in gs or []), default=0)
+    longest_opener = max((post_length(g) for gs in greetings.values() for g in gs or []), default=0)
     for n, fact in enumerate(facts, 1):
         _, plain = build_text(fact)
         label = f"Fact {n} ({str(fact['text'])[:40]}...)"
-        if len(plain) > MAX_POST_LENGTH:
-            print(f"❌ {label} is {len(plain)} characters; the limit is {MAX_POST_LENGTH}.")
+        n = post_length(plain)
+        if n > MAX_POST_LENGTH:
+            print(f"❌ {label} is {n} characters (including the link); "
+                  f"the limit is {MAX_POST_LENGTH}. Please trim {n - MAX_POST_LENGTH}.")
             problems += 1
-        elif len(plain) + longest_opener + 2 > MAX_POST_LENGTH:
+        elif n + longest_opener + 2 > MAX_POST_LENGTH:
             print(f"ℹ️  {label} is long enough that some replies will skip the greeting.")
         if fact.get("image"):
             if not (HERE / fact["image"]).exists():
@@ -309,7 +330,7 @@ def do_preview():
         fact = random.choice(facts)
         opener = random.choice(greetings[name]) if name in greetings else None
         _, plain = build_text(fact, opener)
-        print(f"===== {name} ({len(plain)} chars) =====\n{plain}\n")
+        print(f"===== {name} ({post_length(plain)} chars) =====\n{plain}\n")
 
 
 if __name__ == "__main__":
