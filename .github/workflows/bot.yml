@@ -1,12 +1,8 @@
 name: MMX Facts bot
 
 on:
-  schedule:
-    # Fact posts: 3 a day, at 09:07, 17:07 and 01:07 Japan time
-    # (the hours are in UTC, which is Japan time minus 9)
-    - cron: "7 0,8,16 * * *"
-    # Replies: check for "show me the potato!" etc. every 20 minutes
-    - cron: "3,23,43 * * * *"
+  # The bot is woken up from outside by cron-job.org (see README, "Timing"),
+  # which presses this "Run workflow" button on a schedule.
   workflow_dispatch:         # lets you run it by hand from the Actions tab
     inputs:
       mode:
@@ -42,13 +38,7 @@ jobs:
       - name: Decide what to do
         id: mode
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.event.schedule }}" = "3,23,43 * * * *" ]; then
-            echo "mode=replies" >> "$GITHUB_OUTPUT"
-          else
-            echo "mode=post" >> "$GITHUB_OUTPUT"
-          fi
+          echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
 
       - name: Run the bot
         env:
