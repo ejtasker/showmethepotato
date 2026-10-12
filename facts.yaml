@@ -34,7 +34,7 @@ greetings:
     - "Your daily dose of Phobos-ia:"
     - "Phobos-ia fed. Here you go:"
   mention:
-    - "Hello! Here's an MMX fact for you:"
+    - "An MMX just fact for you:"
     - "Did you know?"
     - "🚀 MMX fact:"
 
@@ -60,25 +60,25 @@ facts:
 
   - text: "Nobody knows for sure where Phobos and Deimos came from. The moons may be captured asteroids, or may have formed from debris thrown into orbit during a giant impact with Mars. MMX should help settle the issue!"
 
-  - text: "MMX aims to bring at least 10 grams of Phobos back to Earth, gathered using two different sampling mechanisms installed on the spacecraft. C-SMP will 'core' out a sample from 2 cm below the surface, while P-SMP (pneumatic) will collect surface material using a small whirlwind of pure nitrogen gas."
+  - text: "MMX aims to bring at least 10 g of Phobos back to Earth, gathered with two samplers onboard the spacecraft. C-SMP will 'core' out a sample from 2 cm below the surface, while P-SMP (pneumatic) will collect  material using a small whirlwind of nitrogen gas."
 
   - text: "MMX is carrying a small rover called IDEFIX, built by the French and German space agencies CNES and DLR. It will be the first rover to drive on a moon of Mars."
 
   - text: "NASA's MEGANE instrument on MMX will map what Phobos is made of by measuring gamma rays and neutrons. 'Megane' is Japanese for 'eyeglasses'. 👓"
 
-  - text: "Gravity on Phobos is less than 1/1,000 of that on Earth. MMX Project Manager Kawakatsu compares landing on the Martian moon to trying to land a balloon: the weak gravity softens the touchdown, but even a small sideways nudge can rival the downward pull and topple the spacecraft! 🎈"
+  - text: "Gravity on Phobos is less than 1/1,000 of Earth's. MMX Project Manager Kawakatsu compares landing on Mars's moon to landing a balloon: the weak gravity softens the touchdown, but a small sideways nudge can rival the downward pull & topple the spacecraft! 🎈"
 
   - text: "MMX won't only visit Phobos. The spacecraft also plans to make observations of Mars's smaller, more distant moon, Deimos."
 
   - text: "Phobos orbits only about 6,000 km above the surface of Mars, closer to its planet than any other moon in the Solar System."
 
-  - text: "What secrets are hidden in Phobos’s rocks? 🪨 MMX’s MIRS instrument, developed by France's CNES, will examine the reflected near-infrared light from the moon to hunt for water-bearing minerals and organic matter. What can these clues tell us about Phobos’s origins?"
+  - text: "What secrets are hidden in Phobos’s rocks? 🪨 MMX’s MIRS instrument, developed by France's CNES, will examine reflected infrared light from the moon to hunt for water-bearing minerals and organic matter. What can these clues tell us about Phobos’s origins?"
 
-  - text: "Wait… a sample of Mars?! 👀 NASA contributed MMX’s pneumatic sampler, P-SMP, to collect material from the surface of Phobos. This may include Martian grains ejected into space by ancient impacts and later captured by Phobos. Could these tiny fragments reveal new secrets about Mars’s past? 🔴"
+  - text: "Wait… a sample of Mars?! 👀 NASA contributed MMX’s pneumatic sampler, P-SMP, to collect material from the surface of Phobos. This may include Mars grains ejected by ancient impacts and captured by Phobos. Could these fragments reveal Mars’s past? 🔴"
 
-  - text: "A camera with a mythical namesake! 👺 MMX’s TENGOO camera stands for 'TElescopic Nadir imager for GeOmOrphology'—but its name also evokes the tengu, a supernatural being in Japanese folklore, often depicted with a red face and long nose. TENGOO will capture detailed images of the Phobos terrain!"
+  - text: "A camera with a mythical namesake! 👺 MMX’s TENGOO stands for 'TElescopic Nadir imager for GeOmOrphology'—but its name evokes the tengu, a Japanese folklore creature with a red face and long nose. TENGOO will snap detailed images of Phobos's terrain!"
 
-  - text: "🐍 Another mythical beast is heading to Phobos! MMX’s OROCHI camera takes its name from 'Optical RadiOmeter composed of CHromatic Imagers'—and from the legendary Japanese eight-headed serpent. The connection? OROCHI has eight wavelength channels to help identify different minerals on Phobos."
+  - text: "🐍 A mythical beast heads to Phobos! MMX’s OROCHI camera ('Optical RadiOmeter composed of CHromatic Imagers') shares its name with Japan’s legendary eight-headed serpent. The link? OROCHI has eight wavelength channels to identify minerals on Phobos."
 
 
 
