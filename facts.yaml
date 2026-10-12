@@ -59,7 +59,7 @@ facts:
 
   - text: "Nobody knows for sure where Phobos and Deimos came from. The moons may be captured asteroids, or may have formed from debris thrown into orbit during a giant impact with Mars. MMX should help settle the issue!"
 
-  - text: "MMX aims to bring at least 10 grams of Phobos back to Earth, gathered using two different sampling mechanisms installed on the spacecraft. C-SMP will "core" out a sample from 2 cm below the surface, while P-SMP (pneumatic) will collect surface material using a small whirlwind of pure nitrogen gas."
+  - text: "MMX aims to bring at least 10 grams of Phobos back to Earth, gathered using two different sampling mechanisms installed on the spacecraft. C-SMP will 'core' out a sample from 2 cm below the surface, while P-SMP (pneumatic) will collect surface material using a small whirlwind of pure nitrogen gas."
 
   - text: "MMX is carrying a small rover called IDEFIX, built by the French and German space agencies CNES and DLR. It will be the first rover to drive on a moon of Mars."
 
