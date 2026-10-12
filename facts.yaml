@@ -40,32 +40,41 @@ greetings:
 
 facts:
 
-  - text: "MMX (Martian Moons eXploration) is a JAXA mission to Phobos, the larger of Mars' two moons. It aims to land, scoop up a sample, and bring it back to Earth."
+  - text: "MMX (Martian Moons eXploration) is a JAXA-led sample return mission to Phobos, the larger of Mars's two moons. The spacecraft aims to explore Phobos from orbit, land on the moon, scoop up a sample, and bring it back to Earth.
+🕸️ "
     link: https://www.mmx.jaxa.jp/en/
 
   - text: "Phobos means 'fear' and Deimos means 'dread'. In Greek myth they were the sons of Ares, the god of war, whom the Romans called Mars."
 
-  - text: "Both of Mars' moons were discovered in August 1877 by astronomer Asaph Hall at the US Naval Observatory in Washington."
+  - text: "Both of Mars's moons were discovered in August 1877 by astronomer Asaph Hall at the US Naval Observatory in Washington."
 
-  - text: "Phobos whips round Mars about three times a day. Seen from the Martian surface, it rises in the west and sets in the east."
+  - text: "Phobos whips round Mars about three times in every Earth day. Seen from the Martian surface, the moon rises in the west and sets in the east."
 
   - text: "Phobos is only about 27 km across at its widest. That's too small for its gravity to pull it into a ball, which is why it looks like a potato. 🥔"
 
-  - text: "Phobos' biggest crater, Stickney, is about 9 km wide, a huge dent for such a small moon. Whatever hit it came close to breaking Phobos apart."
+  - text: "Phobos's biggest crater, Stickney, is about 9 km wide, a huge dent for such a small moon. Whatever hit it came close to breaking Phobos apart."
 
-  - text: "Phobos is slowly spiralling in towards Mars. In a few tens of millions of years it's expected to be torn apart by Mars' gravity, perhaps forming a ring."
+  - text: "Phobos is slowly spiralling in towards Mars. In a few tens of millions of years it's expected to be torn apart by Mars's gravity, perhaps forming a ring. It's even possible that this has happened before!"
+    link: https://mmx-news.isas.jaxa.jp/?p=1150
 
-  - text: "Nobody knows for sure where Phobos came from. Is it a captured asteroid, or debris thrown up when something huge smashed into Mars? MMX's samples should help settle it."
+  - text: "Nobody knows for sure where Phobos and Deimos came from. The moons may be captured asteroids, or may have formed from debris thrown into orbit during a giant impact with Mars. MMX should help settle the issue!"
 
-  - text: "MMX aims to bring at least 10 grams of Phobos back to Earth, enough for scientists around the world to study in their labs."
+  - text: "MMX aims to bring at least 10 grams of Phobos back to Earth, gathered using two different sampling mechanisms installed on the spacecraft. C-SMP will "core" out a sample from 2 cm below the surface, while P-SMP (pneumatic) will collect surface material using a small whirlwind of pure nitrogen gas."
 
   - text: "MMX is carrying a small rover called IDEFIX, built by the French and German space agencies CNES and DLR. It will be the first rover to drive on a moon of Mars."
 
   - text: "NASA's MEGANE instrument on MMX will map what Phobos is made of by measuring gamma rays and neutrons. 'Megane' is Japanese for 'eyeglasses'. 👓"
 
-  - text: "Gravity on Phobos is less than a thousandth of Earth's. Landing there is less like touching down and more like a very gentle bump."
+  - text: "Gravity on Phobos is less than 1/1,000 of that on Earth. MMX Project Manager Kawakatsu compares landing on the Martian moon to trying to land a balloon: the weak gravity softens the touchdown, but even a small sideways nudge can rival the downward pull and topple the spacecraft! 🎈"
 
-  - text: "MMX won't only visit Phobos. It also plans to make observations of Mars' smaller, more distant moon, Deimos."
+  - text: "MMX won't only visit Phobos. The spacecraft also plans to make observations of Mars's smaller, more distant moon, Deimos."
+
+  - text: "Phobos orbits only about 6,000 km above the surface of Mars, closer to its planet than any other moon in the Solar System."
+
+  - text: "What secrets are hidden in Phobos’s rocks? 🪨 MMX’s MIRS instrument, developed by France's CNES, will examine the reflected near-infrared light from the moon to hunt for water-bearing minerals and organic matter. What can these clues tell us about Phobos’s origins?"
+
+  - text: "Wait… a sample of Mars?! 👀 NASA contributed MMX’s pneumatic sampler, P-SMP, to collect material from the surface of Phobos. This may include Martian grains ejected into space by ancient impacts and later captured by Phobos. Could these tiny fragments reveal new secrets about Mars’s past? 🔴"
+
 
 
   # --- Example with a picture (remove the # at the start of each line to use it) ---
