@@ -1,0 +1,76 @@
+# =====================================================================
+#  MMX Facts — the bot's fact list
+# =====================================================================
+#
+#  To add a fact, copy one of the blocks below and edit it.
+#  Only "text" is required. Everything else is optional.
+#
+#    text:  the fact itself (keep it short — the whole post, including
+#           any link, must fit in 300 characters)
+#    link:  a web address to add at the end of the post
+#    image: a picture file in the "images" folder, e.g. images/phobos.jpg
+#    alt:   a description of the picture for people using screen readers
+#           (please always include this when you add an image)
+#
+#  Indentation matters: each fact starts with "- text:" and the other
+#  lines line up underneath "text". If you put a colon (:) or a # in
+#  your fact, wrap the whole fact in "double quotes".
+#
+#  After editing, the "Check facts" job on GitHub tells you if anything
+#  is too long or an image is missing.
+# =====================================================================
+
+
+# Opening lines the bot picks from when it replies to someone.
+# One list per trigger. The bot only uses an opener if there's room.
+greetings:
+  potato:
+    - "🥔 Potato incoming!"
+    - "You asked for the potato. Here it is:"
+    - "One potato, served fresh from Mars orbit:"
+  phobosia:
+    - "Feeding your Phobos-ia 🌑"
+    - "Your daily dose of Phobos-ia:"
+    - "Phobos-ia fed. Here you go:"
+  mention:
+    - "Hello! Here's an MMX fact for you:"
+    - "Did you know?"
+    - "🚀 MMX fact:"
+
+
+facts:
+
+  - text: "MMX (Martian Moons eXploration) is a JAXA mission to Phobos, the larger of Mars' two moons. It aims to land, scoop up a sample, and bring it back to Earth."
+    link: https://www.mmx.jaxa.jp/en/
+
+  - text: "Phobos means 'fear' and Deimos means 'dread'. In Greek myth they were the sons of Ares, the god of war, whom the Romans called Mars."
+
+  - text: "Both of Mars' moons were discovered in August 1877 by astronomer Asaph Hall at the US Naval Observatory in Washington."
+
+  - text: "Phobos whips round Mars about three times a day. Seen from the Martian surface, it rises in the west and sets in the east."
+
+  - text: "Phobos is only about 27 km across at its widest. That's too small for its gravity to pull it into a ball, which is why it looks like a potato. 🥔"
+
+  - text: "Phobos' biggest crater, Stickney, is about 9 km wide, a huge dent for such a small moon. Whatever hit it came close to breaking Phobos apart."
+
+  - text: "Phobos is slowly spiralling in towards Mars. In a few tens of millions of years it's expected to be torn apart by Mars' gravity, perhaps forming a ring."
+
+  - text: "Nobody knows for sure where Phobos came from. Is it a captured asteroid, or debris thrown up when something huge smashed into Mars? MMX's samples should help settle it."
+
+  - text: "MMX aims to bring at least 10 grams of Phobos back to Earth, enough for scientists around the world to study in their labs."
+
+  - text: "MMX is carrying a small rover called IDEFIX, built by the French and German space agencies CNES and DLR. It will be the first rover to drive on a moon of Mars."
+
+  - text: "NASA's MEGANE instrument on MMX will map what Phobos is made of by measuring gamma rays and neutrons. 'Megane' is Japanese for 'eyeglasses'. 👓"
+
+  - text: "Gravity on Phobos is less than a thousandth of Earth's. Landing there is less like touching down and more like a very gentle bump."
+
+  - text: "MMX won't only visit Phobos. It also plans to make observations of Mars' smaller, more distant moon, Deimos."
+
+
+  # --- Example with a picture (remove the # at the start of each line to use it) ---
+  #
+  # - text: "This is what Phobos looks like up close."
+  #   image: images/phobos.jpg
+  #   alt: "A grey, lumpy moon covered in craters, with one very large crater on the right"
+  #   link: https://www.mmx.jaxa.jp/en/
