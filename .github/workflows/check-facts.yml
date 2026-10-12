@@ -1,0 +1,20 @@
+name: Check facts
+
+# Runs whenever facts.yaml or the images folder changes, and tells you
+# (with a red ❌ in the Actions tab) if a fact is too long or an image is missing.
+on:
+  push:
+    paths: ["facts.yaml", "images/**"]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python bot.py check
