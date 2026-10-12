@@ -80,6 +80,10 @@ facts:
 
   - text: "🐍 A mythical beast heads to Phobos! MMX’s OROCHI camera ('Optical RadiOmeter composed of CHromatic Imagers') shares its name with Japan’s legendary eight-headed serpent. The link? OROCHI has eight wavelength channels to identify minerals on Phobos."
 
+  - text: "Rings of Mars 🪐? The Circum-Martian Dust Monitor (CMDM) onboard MMX will search for proposed (but still undiscovered) dust rings around Mars."
+
+  - text: "Protecting future Martians 👩‍🚀 The Interplanetary Radiation Environment Monitor (IREM) onboard MMX will measure the space radiation environment, helping evaluate the exposure dose for a human crew that may one day visit the Martian system!"
+
 
 
     # --- Example with a picture (remove the # at the start of each line to use it) ---
