@@ -16,6 +16,7 @@ import json
 import os
 import random
 import re
+import subprocess
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -30,6 +31,8 @@ STATE_FILE = HERE / "state.json"
 
 MAX_POST_LENGTH = 300          # Bluesky's limit (characters)
 MAX_IMAGE_BYTES = 950_000      # Bluesky's limit is just under 1 MB
+MAX_VIDEO_BYTES = 100_000_000  # GitHub won't store files bigger than 100 MB
+WEB_UPLOAD_BYTES = 25_000_000  # GitHub's website only accepts uploads up to 25 MB
 MAX_REPLIES_PER_RUN = 10       # safety cap so a flood can't make the bot spam
 MAX_POST_AGE = timedelta(days=2)  # ignore triggers older than this
 
@@ -99,6 +102,20 @@ def load_image(path):
                 scale *= 0.85
 
 
+def video_size(path):
+    """Return (width, height) of a video so Bluesky shows it the right shape, or None."""
+    try:
+        out = subprocess.run(
+            ["ffprobe", "-v", "error", "-select_streams", "v:0",
+             "-show_entries", "stream=width,height", "-of", "csv=p=0", str(HERE / path)],
+            capture_output=True, text=True, timeout=30,
+        ).stdout.strip()
+        w, h = (int(x) for x in out.split(",")[:2])
+        return w, h
+    except Exception:
+        return None
+
+
 # ---------------------------------------------------------------- state ----
 
 def load_state():
@@ -137,12 +154,21 @@ def send(client, fact, opener=None, reply_to=None):
     if DRY_RUN:
         where = f" (reply to {reply_to.parent.uri})" if reply_to else ""
         print(f"--- DRY RUN: would post{where} ---\n{plain}")
-        if fact.get("image"):
-            print(f"[image: {fact['image']} | alt: {fact.get('alt', '')}]")
+        for kind in ("image", "video"):
+            if fact.get(kind):
+                print(f"[{kind}: {fact[kind]} | alt: {fact.get('alt', '')}]")
         print()
         return
 
-    if fact.get("image"):
+    if fact.get("video"):
+        size = video_size(fact["video"])
+        client.send_video(
+            tb, video=(HERE / fact["video"]).read_bytes(), video_alt=fact.get("alt", ""),
+            reply_to=reply_to, langs=["en"],
+            video_aspect_ratio=models.AppBskyEmbedDefs.AspectRatio(width=size[0], height=size[1])
+            if size else None,
+        )
+    elif fact.get("image"):
         data, (w, h) = load_image(fact["image"])
         client.send_image(
             tb, image=data, image_alt=fact.get("alt", ""), reply_to=reply_to,
@@ -254,6 +280,22 @@ def do_check():
                 problems += 1
             elif not fact.get("alt"):
                 print(f"⚠️  {label} has an image but no alt text.")
+        if fact.get("video"):
+            vid = HERE / str(fact["video"])
+            if fact.get("image"):
+                print(f"❌ {label} has both an image and a video; Bluesky allows only one.")
+                problems += 1
+            elif not vid.exists():
+                print(f"❌ {label}: video file '{fact['video']}' not found.")
+                problems += 1
+            elif vid.suffix.lower() != ".mp4":
+                print(f"❌ {label}: videos need to be .mp4 files.")
+                problems += 1
+            elif vid.stat().st_size > MAX_VIDEO_BYTES:
+                print(f"❌ {label}: video is over 100 MB, too big to store on GitHub.")
+                problems += 1
+            elif not fact.get("alt"):
+                print(f"⚠️  {label} has a video but no alt text.")
         if fact.get("link") and not str(fact["link"]).startswith(("http://", "https://")):
             print(f"❌ {label}: link should start with https://")
             problems += 1
