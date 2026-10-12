@@ -1,0 +1,65 @@
+name: MMX Facts bot
+
+on:
+  schedule:
+    - cron: "7 0 * * *"      # daily fact at 00:07 UTC = 09:07 Japan time
+    - cron: "*/20 * * * *"   # check for "show me the potato!" etc. every 20 minutes
+  workflow_dispatch:         # lets you run it by hand from the Actions tab
+    inputs:
+      mode:
+        description: "What to do"
+        type: choice
+        options: [post, replies]
+        default: post
+      dry_run:
+        description: "Dry run (print instead of posting)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write            # so the bot can save state.json (which posts it has answered)
+
+concurrency:
+  group: mmxfacts-bot        # never run two copies at once
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Decide what to do
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "7 0 * * *" ]; then
+            echo "mode=post" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=replies" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run the bot
+        env:
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '0' }}
+        run: python bot.py ${{ steps.mode.outputs.mode }}
+
+      - name: Save what the bot remembers
+        run: |
+          git config user.name "mmxfacts-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add state.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update bot state"
+          git pull --rebase
+          git push
