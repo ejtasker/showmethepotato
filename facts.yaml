@@ -97,6 +97,11 @@ facts:
   
   - text: "Ready to try being a JAXA engineer? This web based game let's you build your own MMX spacecraft to explore the moons of Mars! What would you have onboard? 🎮"
     link: https://edu.jaxa.jp/en/contents/MMX/
+
+  - text: "Would you like your very own Martian Moons eXploration spacecraft? These instructions let you print your own 1:48-scale model of MMX, ready to head to a potato near you!"
+    image: images/3dmmx3-1.png
+    alt: "3D printed version of the MMX spacecraft in an orange material. A toy car sits beside it for scale."
+    link: https://mmx-news.isas.jaxa.jp/?p=2410
   
 
 
