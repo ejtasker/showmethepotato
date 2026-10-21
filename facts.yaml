@@ -102,6 +102,10 @@ facts:
     image: images/3dmmx3-1.png
     alt: "3D printed version of the MMX spacecraft in an orange material. A toy car sits beside it for scale."
     link: https://mmx-news.isas.jaxa.jp/?p=2410
+    
+  - text: "A partial eclipse of the heart? 🧡 Phobos isn't large enough to create a total eclipse from the surface of Mars. But NASA's Perseverance rover did capture this potato-shaped shadow! (📸: NASA/JPL-Caltech/ASU/MSSS/SSI)"
+    image: images/phobos_eclipse.jpeg
+    alt: "Photograph of Phobos crossing the surface of the Sun, captured by the Mastcam-Z camera system onboard Perseverance. The Sun is an orange disc, and Phobos is a black potato-shape."
   
 
 
