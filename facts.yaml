@@ -106,6 +106,9 @@ facts:
   - text: "A partial eclipse of the heart? 🧡 Phobos isn't large enough to create a total eclipse from the surface of Mars. But NASA's Perseverance rover did capture this potato-shaped shadow! (📸: NASA/JPL-Caltech/ASU/MSSS/SSI)"
     image: images/phobos_eclipse.jpeg
     alt: "Photograph of Phobos crossing the surface of the Sun, captured by the Mastcam-Z camera system onboard Perseverance. The Sun is an orange disc, and Phobos is a black potato-shape."
+
+  - text: "The Idefix rover will be the first to explore the surface of Phobos. But the actual samples will be collected by the MMX spacecraft itself, which is equipped with two sampling mechanisms! Data about the surface from Idefix will help MMX make a safe landing."
+
   
 
 
