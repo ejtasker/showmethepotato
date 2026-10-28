@@ -118,6 +118,8 @@ facts:
   - text: "MMX's Idefix rover must drive at just 1 mm/s to avoid tipping in Phobos's very weak gravity! The escape speed on Phobos is just 11.4 m/s, the sprint speed of an elephant 🐘 More incredible facts can be found in the rover press kit: "
     link: https://www.dlr.de/en/media/publications/miscellaneous/idefix_launch_kit_en_links.pdf/@@download/file
 
+  - text: "Space has no atmosphere to shield spacecraft from direct sunlight. Sunlit surfaces can become very hot, while shaded areas are extremely cold. MMX is covered in gold-coloured multi-layer insulation to reflect heat and helps maintain a stable temperature."
+
   
 
   
