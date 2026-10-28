@@ -109,6 +109,17 @@ facts:
 
   - text: "The Idefix rover will be the first to explore the surface of Phobos. But the actual samples will be collected by the MMX spacecraft itself, which is equipped with two sampling mechanisms! Data about the surface from Idefix will help MMX make a safe landing."
 
+  - text: "A moon of darkness? 🌚 Phobos is one of the darkest bodies in the Solar System, reflecting less than 7% sunlight. Our Moon reflects about twice as much light, although asteroid Ryugu (destination of the Hayabusa2 mission) is even darker than Phobos!"
+
+  - text: "Can't hold me down! 🎈The Idefix rover was designed by DLR (Germany) and CNES (France) space agencies, the same duo responsible for the Philae lander on Comet 67P and the MASCOT lander on asteroid Ryugu. That's some serious low-gravity landing experience!"
+
+  - text: "We've tried to visit Phobos before... and failed. The Soviet Union's Phobos 2 mission lost contact while approaching the moon, while Russia's Phobos-Grunt sample return mission never left Earth orbit. With the MMX mission, it is time to try again..."
+
+  - text: "MMX's Idefix rover must drive at just 1 mm/s to avoid tipping in Phobos's very weak gravity! The escape speed on Phobos is just 11.4 m/s, the sprint speed of an elephant 🐘 More incredible facts can be found in the rover press kit: "
+    link: https://www.dlr.de/en/media/publications/miscellaneous/idefix_launch_kit_en_links.pdf/@@download/file
+
+  
+
   
 
 
