@@ -22,8 +22,11 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import regex
+import time
+
 import yaml
 from atproto import Client, client_utils, models
+from atproto_client.exceptions import NetworkError, RateLimitExceededError
 from PIL import Image
 
 HERE = Path(__file__).parent
@@ -161,11 +164,26 @@ def pick_fact(facts, state):
 
 # -------------------------------------------------------------- posting ----
 
-def login():
+class BlueskyDown(Exception):
+    """Bluesky itself is having problems (not anything wrong with the bot)."""
+
+
+def login(tries=4):
+    """Log in, waiting and retrying if Bluesky's servers are busy or down."""
     handle = os.environ["BSKY_HANDLE"]
-    client = Client()
-    client.login(handle, os.environ["BSKY_APP_PASSWORD"])
-    return client
+    for attempt in range(1, tries + 1):
+        try:
+            client = Client()
+            client.login(handle, os.environ["BSKY_APP_PASSWORD"])
+            return client
+        except RateLimitExceededError:
+            raise BlueskyDown("Bluesky says the bot has logged in too often recently.")
+        except NetworkError as e:   # timeouts and 5xx "server error" responses
+            print(f"Bluesky isn't responding properly (login, try {attempt} of {tries}): "
+                  f"{getattr(e, 'response', None) and e.response.status_code or type(e).__name__}")
+            if attempt < tries:
+                time.sleep(10 * attempt)
+    raise BlueskyDown("Bluesky's servers weren't working.")
 
 
 def send(client, fact, opener=None, reply_to=None):
@@ -226,15 +244,32 @@ def do_post():
     save_state(state)
 
 
+def ask_bluesky(what, call, tries=3):
+    """Run one request to Bluesky, retrying if it's slow or busy.
+    Returns None (instead of crashing) if it still fails, so the rest of the run carries on."""
+    for attempt in range(1, tries + 1):
+        try:
+            return call()
+        except Exception as e:
+            print(f"Bluesky didn't answer ({what}, try {attempt} of {tries}): "
+                  f"{type(e).__name__}")
+            if attempt < tries:
+                time.sleep(5 * attempt)
+    print(f"Skipping '{what}' this time; the next check will catch anything missed.")
+    return None
+
+
 def find_triggers(client, my_did):
     """Return a list of (trigger_name, uri, cid, record, author_did) to answer."""
     found = {}
 
     # 1. Posts containing a trigger phrase
     for query in SEARCH_QUERIES:
-        resp = client.app.bsky.feed.search_posts(
+        resp = ask_bluesky(f"search {query}", lambda: client.app.bsky.feed.search_posts(
             params={"q": query, "sort": "latest", "limit": 50}
-        )
+        ))
+        if resp is None:
+            continue
         for post in resp.posts:
             text = squash(getattr(post.record, "text", "") or "")
             for name, phrase in TRIGGERS.items():
@@ -242,8 +277,10 @@ def find_triggers(client, my_did):
                     found[post.uri] = (name, post.uri, post.cid, post.record, post.author.did)
 
     # 2. Posts that @-mention the bot
-    resp = client.app.bsky.notification.list_notifications(params={"limit": 50})
-    for n in resp.notifications:
+    resp = ask_bluesky("notifications", lambda: client.app.bsky.notification.list_notifications(
+        params={"limit": 50}
+    ))
+    for n in (resp.notifications if resp else []):
         if n.reason == "mention" and n.uri not in found and is_recent(n.indexed_at):
             found[n.uri] = ("mention", n.uri, n.cid, n.record, n.author.did)
 
@@ -335,5 +372,14 @@ def do_preview():
 
 if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else "check"
-    {"post": do_post, "replies": do_replies, "check": do_check,
-     "preview": do_preview}[mode]()
+    try:
+        {"post": do_post, "replies": do_replies, "check": do_check,
+         "preview": do_preview}[mode]()
+    except BlueskyDown as e:
+        print(f"\n🌩️  {e} This is a problem on Bluesky's side, not with your bot or facts.")
+        if mode == "replies":
+            # Nothing is lost: the next check will find any posts waiting for a reply.
+            print("The next check will catch up on any replies. Nothing to do.")
+            sys.exit(0)
+        print("This fact post was skipped; the next scheduled post will go out as normal.")
+        sys.exit(1)
